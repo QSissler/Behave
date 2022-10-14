@@ -1,5 +1,4 @@
 puts "Seeding Teachers"
-#Created Ms. Sissler in postman
 t1 = Teacher.create!(username: "QSissler", password: "quinn1", name: "Ms. Sissler", room_number: 22)
 t2 = Teacher.create!(username: "ALarison", password: "andrea1", name: "Mrs. Larison", room_number: 24)
 t3 = Teacher.create!(username: "KSmith", password: "kristina1", name: "Mrs. Smith", room_number: 26)
@@ -10,9 +9,7 @@ c1 = Cohort.create!(grade: "1", subject: "Elementary Ed", year: "2021-2022", tea
 c2 = Cohort.create!(grade: "1", subject: "Elementary Ed", year: "2020-2021", teacher_id: t1.id)
 c3 = Cohort.create!(grade: "2", subject: "Elementary Ed", year: "2021-2022", teacher_id: t2.id)
 c4 = Cohort.create!(grade: "1", subject: "Elementary Ed", year: "2021-2022", teacher_id: t3.id)
-
 puts "Seeding Classes done"
-
 
 
 puts "Seeding Students"
@@ -33,10 +30,9 @@ s13 = Student.create!(name: "Gabriela Rodriguez", avatar: "", parent_name: "Jenn
 puts "Seeding Students done"
 
 puts "Seeding Notes"
-
 n1 = Note.create!(student_id: s1.id, parent_contact: false, note: "He did a nice job today", behavior_level: 1)
 n2 = Note.create!(student_id: s1.id, parent_contact: true, note: "Stole from his cohortmate", behavior_level: 3)
 n3 = Note.create!(student_id: s2.id, parent_contact: false, note: "Pushed her cohortmate at recess", behavior_level: 2)
-
 puts "Seeding Notes done"
+
 puts "All seeding complete"
