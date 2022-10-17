@@ -20,15 +20,18 @@ function NavBar({ setUser, user }) {
       <NavLink exact to="/">
         Home
       </NavLink>
-      {/* <NavLink exact to="/tripform">
-        Trip Form
+      <NavLink exact to="/dailybehavior">
+        Daily Behavior
       </NavLink>
-      <NavLink exact to="/itemform">
-        Item Form
+      <NavLink exact to="/studentprofiles">
+        Student Profiles
       </NavLink>
-      <NavLink exact to="/myitems">
-        Packing Lists
-      </NavLink> */}
+      <NavLink exact to="/addnote">
+        Add Note
+      </NavLink>
+      <NavLink exact to="/account">
+        Account
+      </NavLink>
       <button onClick={handleLogoutClick}>Logout</button>
     </nav> ) :
     (<nav>

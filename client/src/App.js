@@ -5,6 +5,10 @@ import NavBar from "./Components/NavBar";
 import Login from "./Components/Login";
 import Home from "./Components/Home";
 import Signup from "./Components/Signup";
+import DailyBehavior from "./Components/DailyBehavior";
+import Account from "./Components/Account";
+import StudentProfileContainer from "./Components/StudentProfileContainer";
+import FullNoteForm from "./Components/FullNoteForm";
 
 
 function App() {
@@ -44,17 +48,21 @@ function App() {
             <Signup setUser={setUser} user={user}/>
           </Route>
 
-          {/* <Route exact path="/tripform">
-            <TripForm trips={trips} setTrips={setTrips}/>
+          <Route exact path="/dailybehavior">
+            <DailyBehavior />
           </Route>
 
-          <Route exact path="/itemform">
-            <ItemForm user={user} trips={trips}/>
+          <Route exact path="/studentprofiles">
+            <StudentProfileContainer />
           </Route>
 
-          <Route exact path="/myitems">
-            <ItemContainer trips={trips}/>
-          </Route> */}
+          <Route exact path="/addnote">
+            <FullNoteForm />
+          </Route>
+
+          <Route exact path="/account">
+            <Account />
+          </Route>
 
         </Switch>
       </div>

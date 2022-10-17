@@ -16,12 +16,20 @@ class Cohort < ApplicationRecord
              b > 0 
          end
 
-        updated_array.sum / updated_array.length
+         if updated_array.empty?
+            0
+         else
+         updated_array.sum / updated_array.length
+         end
     end
 
 
     def self.order_by_date
-        order(:year)
+        order(:year).reverse
+    end
+
+    def cohort_name
+        "#{self.year} #{self.subject} Grade: #{self.grade}"
     end
 
 end
