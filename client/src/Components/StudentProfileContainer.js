@@ -1,10 +1,13 @@
-function StudentProfileContainer(){
+import StudentProfilesSideBarContainer from "./StudentProfilesSidebarContainer";
 
-    const currentTeacherClasses = null
+
+function StudentProfileContainer(){
+   
 
     return(
         <div>
             <h1>Student Profiles</h1>
+            <StudentProfilesSideBarContainer />
          </div>
     )
 }

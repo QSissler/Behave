@@ -6,7 +6,6 @@ class TeachersController < ApplicationController
             render json: teachers, status: :ok
         end
     
-    
         def show
             render json: @current_user
         end
@@ -17,10 +16,15 @@ class TeachersController < ApplicationController
            render json: teacher, status: :created
         end
     
+        def update
+            teacher = Teacher.find_by(id: session[:teacher_id])
+            teacher.update!(teacher_params)
+            render json: teacher, status: :ok
+        end
     
         private
         def teacher_params
-            params.permit(:username, :password, :name, :room_number)
+            params.permit(:username, :password, :name, :room_number, :avatar)
         end
     
 end

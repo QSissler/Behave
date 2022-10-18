@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :notes
-  resources :cohorts
+  # resources :notes, only:
+  resources :cohorts, only: [:index, :create, :destroy]
   resources :students
   resources :teachers
 
@@ -9,6 +9,8 @@ Rails.application.routes.draw do
    get "/me", to: "teachers#show"
    post "/login", to: "sessions#create"
    delete "/logout", to: "sessions#destroy"
+
+   get "/students/:id/notes", to: "notes#index"
   
 
   get '*path',

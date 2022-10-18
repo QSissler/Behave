@@ -9,6 +9,7 @@ import DailyBehavior from "./Components/DailyBehavior";
 import Account from "./Components/Account";
 import StudentProfileContainer from "./Components/StudentProfileContainer";
 import FullNoteForm from "./Components/FullNoteForm";
+import { CohortProvider } from "./Context/CohortProvider";
 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
         <Switch>
 
         <Route exact path="/">
-           <Home/>
+           <Home user={user}/>
         </Route>
 
         <Route exact path="/login">
@@ -48,6 +49,7 @@ function App() {
             <Signup setUser={setUser} user={user}/>
           </Route>
 
+          <CohortProvider>
           <Route exact path="/dailybehavior">
             <DailyBehavior />
           </Route>
@@ -61,9 +63,9 @@ function App() {
           </Route>
 
           <Route exact path="/account">
-            <Account />
+            <Account user={user} setUser={setUser}/>
           </Route>
-
+          </CohortProvider>
         </Switch>
       </div>
     </BrowserRouter>

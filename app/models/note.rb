@@ -8,4 +8,8 @@ class Note < ApplicationRecord
         self.order(:created_at).reverse
     end
 
+    def nice_time
+        self.created_at.strftime("%B %-d, %Y")
+    end
+
 end

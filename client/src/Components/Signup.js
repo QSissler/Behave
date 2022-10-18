@@ -21,7 +21,10 @@ function Signup({user, setUser}) {
         e.preventDefault()
         const user = {
             username,
-            password
+            password,
+            name: "",
+            avatar: "",
+            room_number: ""
         }
 
     fetch("/signup",{
