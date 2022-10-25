@@ -28,14 +28,10 @@ function DailyBehavior(){
         }
     }
 
-    // function  handleOnChooseClass(e){
-    //    e.preventDefault();
-    //    setShowClass(!showClass)
-    // }
 
     return(
-        <div>
-            <h1>Choose a Class to add Daily Behavior!</h1>
+        <div className="dailyBehavior">
+            <h1>Daily Behavior</h1>
             <form>
             <select onChange={(e) => handleClassChange(e)}>
                 <option>Choose a Class</option>

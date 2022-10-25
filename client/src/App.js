@@ -9,6 +9,7 @@ import DailyBehavior from "./Components/DailyBehavior";
 import Account from "./Components/Account";
 import StudentProfileContainer from "./Components/StudentProfileContainer";
 import NoteFormContainer from "./Components/NoteFormContainer";
+import UpdateClassForm from "./Components/UpdateClassForm";
 import { CohortProvider } from "./Context/CohortProvider";
 
 
@@ -64,6 +65,10 @@ function App() {
 
           <Route exact path="/account">
             <Account user={user} setUser={setUser}/>
+          </Route>
+
+          <Route exact path="/cohorts/:id">
+            <UpdateClassForm user={user}/>
           </Route>
           </CohortProvider>
         </Switch>

@@ -7,6 +7,8 @@ function StudentProfilesSideBarContainer(){
     let [cohorts, setCohorts] = useContext(CohortContext)
     const [currentCohortProfilesPage, setCurrentCohortProfilesPage] = useState([])
     const [chosenStudent, setChosenStudent] = useState([])
+    const [showUpdateStudentForm, setShowUpdateStudentForm] = useState(false)
+   
 
     const currentTeacherClassesForProfiles = cohorts.map(cohort => {
         return <option key={cohort.id}>{cohort.cohort_name}</option>
@@ -20,14 +22,16 @@ function StudentProfilesSideBarContainer(){
     const selectedCohort = cohorts.filter(cohort => cohort.cohort_name === currentCohortProfilesPage)
     
 
-    function showSelectedStudent(student){
-        setChosenStudent(student)
+    function showSelectedStudent(selectedStudent){
+        setShowUpdateStudentForm(false)
+        setChosenStudent(selectedStudent)
     }
 
     
     return(
-        <div>
-            <h1>SideBar</h1>
+        <div className="profiles">
+            <div className="sidebar">
+            <h2>Choose a Class</h2>
             <form>
             <select onChange={(e) => handleClassProfilePageChange(e)}>
                 <option>Choose a Class</option>
@@ -35,9 +39,14 @@ function StudentProfilesSideBarContainer(){
             </select>
             </form>
             {selectedCohort.length === 0 ? null : selectedCohort[0].students.map(student => {
-                return <button onClick={() => showSelectedStudent(student)} key={student.id}>{student.name}</button>
+                return <button className="studentList" onClick={() => showSelectedStudent(student)} key={student.id}>{student.name}</button>
             })}
-            {chosenStudent.length === 0 ? null : <StudentProfileCard chosenStudent={chosenStudent}/>}
+            </div>
+            {chosenStudent.length === 0 ? null : 
+            <StudentProfileCard 
+            chosenStudent={chosenStudent} 
+            showUpdateStudentForm={showUpdateStudentForm} 
+            setShowUpdateStudentForm={setShowUpdateStudentForm}/>}
          </div>
     )
 }

@@ -6,9 +6,20 @@ class CohortsController < ApplicationController
         render json: cohorts, status: :ok
     end
 
+    def show
+        cohort = Cohort.find(params[:id])
+        render json: cohort, status: :ok
+    end
+
     def create
         cohort = Cohort.create!(cohort_params)
         render json: cohort, status: :created
+    end
+
+    def update
+        cohort = Cohort.find(params[:id])
+        cohort.update!(cohort_params)
+        render json: cohort, status: :ok
     end
 
     def destroy

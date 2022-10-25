@@ -8,8 +8,6 @@ function BehaviorNoteForm({chosenStudent, selectedCohort}){
     const [student, setStudent] = useState([])
 
 
-    console.log(student.id)
-
     function handleSubmitNewNote(e){
         e.preventDefault();
         let newNote = {
@@ -40,7 +38,7 @@ function BehaviorNoteForm({chosenStudent, selectedCohort}){
      
     useEffect(() => {
         let filterForChosenStudent = selectedCohort[0].students.filter(student => {
-       return student.name ===chosenStudent
+       return student.name === chosenStudent
     }) 
     setStudent(filterForChosenStudent)
     }, [chosenStudent])

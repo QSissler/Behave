@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   # resources :notes, only:
-  resources :cohorts, only: [:index, :create, :destroy]
-  resources :students
+  resources :cohorts, only: [:index, :show, :create, :destroy, :update]
+  resources :students, only: [:create, :destroy, :show, :update]
   resources :teachers
-  resources :notes, only: [:create]
+  resources :notes, only: [:create, :update, :destroy]
 
    # resources :teachers
    post "/signup", to: "teachers#create"

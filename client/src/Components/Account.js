@@ -1,16 +1,23 @@
 import  { useState, useContext, useEffect} from "react"
+import {useHistory} from 'react-router-dom'
 import { CohortContext } from "../Context/CohortProvider"
+import NewClassForm from "./NewClassForm"
 
 
 function Account({user, setUser}){
     let [cohorts, setCohorts] = useContext(CohortContext)
+    const history = useHistory()
     const [imagePlaceholder, setImagePlaceholder] = useState("https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png")
     const [showUserUpdateForm, setShowUserUpdateForm] = useState(false)
     const [userName, setUserName] = useState("")
-    const [password, setPassword] = useState("")
     const [name, setName] = useState("")
     const [roomNumber, setRoomNumber] = useState("")
     const [avatar, setAvatar] = useState("")
+    const [showNewClassForm, setShowNewClassForm] = useState(false)
+
+    function handleShowNewClassForm(){
+        setShowNewClassForm(!showNewClassForm)
+    }
 
 
     function handleCohortDelete(cohort){
@@ -25,19 +32,22 @@ function Account({user, setUser}){
             <div key={cohort.id}>
             <p key={cohort.id}>{cohort.cohort_name}</p>
             <button onClick={() => handleCohortDelete(cohort)}>Delete</button>
+            <button onClick={() => pushToUpdateClass(cohort)}>Update Class</button>
             </div>
         )
     })
 
     function handleUpdateUserForm(){
         setShowUserUpdateForm(!showUserUpdateForm)
-        setUserName(user.name)
+        setUserName(user.username)
         setName(user.name)
         setRoomNumber(user.room_number)
         setAvatar(user.avatar)
     }
 
-    function handleUpdateUser(){
+    function handleUpdateUser(e){
+        e.preventDefault()
+
         let updatedUser = {
             username: userName,
             name: name,
@@ -53,7 +63,7 @@ function Account({user, setUser}){
              body: JSON.stringify(updatedUser),
          })
           .then(res => res.json())
-          .then(console.log);
+          .then(data => setUser(data));
 
         setUserName("")
         setName("")
@@ -62,27 +72,40 @@ function Account({user, setUser}){
         setShowUserUpdateForm(false)
     }
 
+    function pushToUpdateClass(cohort){
+        console.log(cohort)
+        history.push(`/cohorts/${cohort.id}`)
+    }
+
 
     return(
         user ? (
         <div>
             <h1>Manage Your Account</h1>
+            <div className="profiles">
+            <div className="sidebar">
             <img className="student-image" src={user.avatar ? user.avatar : imagePlaceholder} ></img>
             <h2>{user.name}</h2>
             <h3>Room Number: {user.room_number}</h3>
+            
             {showUserUpdateForm ? null : <button onClick={handleUpdateUserForm}>Update Account</button>}
+            
             {showUserUpdateForm ? (
                 <form onSubmit={handleUpdateUser}>
                     <label>Username:</label><input value={userName} onChange={(e) => setUserName(e.target.value)}></input>
-                    {/* <label>New Password:</label><input value={password} onChange={(e) => setPassword(e.target.value)}></input> */}
                     <label>Name:</label><input value={name} onChange={(e) => setName(e.target.value)}></input>
                     <label>Room Number:</label><input value={roomNumber} onChange={(e) => setRoomNumber(e.target.value)}></input>
                     <label>Avatar:</label><input value={avatar} onChange={(e) => setAvatar(e.target.value)}></input>
                     <button type="submit">Update Account</button>
                 </form>
             ) : null}
+            </div>
+            <div className="accountPageClasses">
             <h2>Classes</h2>
+            <button onClick={handleShowNewClassForm}>Add a Class</button>
+            {showNewClassForm ? <NewClassForm user={user} handleShowNewClassForm={handleShowNewClassForm}/> : null}
             {classesToShow}
+            </div> </div>
          </div>) : (<div>
             <h1>Loading</h1>
          </div>)

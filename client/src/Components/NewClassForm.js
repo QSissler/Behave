@@ -1,6 +1,9 @@
-import { useState } from "react"
-function NewClassForm({user}){
+import { useState, useContext } from "react"
+import { CohortContext } from "../Context/CohortProvider"
 
+function NewClassForm({user, handleShowNewClassForm}){
+
+    let [cohorts, setCohorts] = useContext(CohortContext)
     const [gradeLevel, setGradeLevel] = useState("")
     const [subject, setSubject] = useState("")
     const [year, setYear] = useState("")
@@ -33,7 +36,9 @@ function NewClassForm({user}){
             body: JSON.stringify(newClass)
             })
             .then(res => res.json())
+            .then(data => setCohorts([...cohorts, data]))
 
+            handleShowNewClassForm()
     }
     
     return(

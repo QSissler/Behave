@@ -24,7 +24,7 @@ class TeachersController < ApplicationController
     
         private
         def teacher_params
-            params.permit(:username, :password, :name, :room_number, :avatar)
+            params.permit(:username, :name, :room_number, :avatar)
         end
     
 end

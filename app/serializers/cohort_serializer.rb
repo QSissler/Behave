@@ -6,7 +6,7 @@ class CohortSerializer < ActiveModel::Serializer
   end
 
   def students
-    object.students
+    object.students.order_by_name
   end
 
   def average_behavior

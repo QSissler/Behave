@@ -8,11 +8,10 @@ function Home({user}){
     }
 
     return(
-        <div>
+    
+            <div>
             <h1>Welcome to Behavior Manager!</h1>
-            <button onClick={handleShowForm}>Add a Class</button>
-            {showForm ? <NewClassForm user={user}/> : null}
-         </div>
+            </div>
     )
 }
 
