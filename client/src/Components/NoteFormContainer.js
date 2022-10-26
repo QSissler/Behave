@@ -45,7 +45,7 @@ function NoteFormContainer(){
     return(
         <div>
             <h1>Add a Note!</h1>
-            {/* <form> */}
+            <div className="noteForm">
                 <select onChange={(e) => handleCohortChange(e)}>
                 <option>Choose Class</option>
                 {currentTeacherClasses}
@@ -59,7 +59,7 @@ function NoteFormContainer(){
                 </select> : null
                 }
                 {showNoteForm ? <BehaviorNoteForm chosenStudent={chosenStudent} selectedCohort={selectedCohort}/> : null}
-            {/* </form> */}
+                </div>
          </div>
     )
 }

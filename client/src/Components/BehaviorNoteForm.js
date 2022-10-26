@@ -32,8 +32,6 @@ function BehaviorNoteForm({chosenStudent, selectedCohort}){
         setIsChecked(false)
     }
 
-    // let filterForChosenStudent = selectedCohort[0].students.filter(student => {
-    //     return student.name == chosenStudent})
 
      
     useEffect(() => {
@@ -46,15 +44,9 @@ function BehaviorNoteForm({chosenStudent, selectedCohort}){
     
 
     return(
-        <div>
-            <h1>NoteForm</h1>
-            <form onSubmit={(e) => handleSubmitNewNote(e)}>
-                <select onChange={(e) => setBehaviorLevel(e.target.value)} value={behaviorLevel}>
-                    <option>Green</option>
-                    <option>Yellow</option>
-                    <option>Red</option>
-                </select>
-                <label>Parent Contact?</label>
+        <div className="notesForm">
+            <form onSubmit={(e) => handleSubmitNewNote(e)} className="form-style-3">
+            <label>Parent Contact?</label>
                 <input 
                 type="checkbox" 
                 value={parentContact} 
@@ -63,8 +55,13 @@ function BehaviorNoteForm({chosenStudent, selectedCohort}){
                 setParentContact(!parentContact)
                 setIsChecked(!isChecked)}}>
                 </input>
-                <label>Note:</label><input type="text" value={note} onChange={(e) => setNote(e.target.value)}></input>
-                <button type="submit">Submit Note</button>
+            <label>Note:</label><input type="text" value={note} onChange={(e) => setNote(e.target.value)} ></input>
+                <select onChange={(e) => setBehaviorLevel(e.target.value)} value={behaviorLevel} className="daily-behavior-select">
+                    <option>Green</option>
+                    <option>Yellow</option>
+                    <option>Red</option>
+                </select>
+                <button type="submit" className="noteButton">Submit Note</button>
             </form>
          </div>
     )

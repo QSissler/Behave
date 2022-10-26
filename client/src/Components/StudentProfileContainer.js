@@ -6,7 +6,7 @@ function StudentProfileContainer(){
 
     return(
         <div>
-            <h1>Student Profiles</h1>
+            {/* <h1>Student Profiles</h1> */}
             <StudentProfilesSideBarContainer />
          </div>
     )

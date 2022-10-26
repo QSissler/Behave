@@ -109,16 +109,16 @@ function UpdateClassForm({user}){
    
 
     return(
-        <div>
+        <div className="update-class">
             <h1>Update Class</h1>
             <h2>{cohort.cohort_name}</h2>
-            <button onClick={handleUpdateClassToggle}>Update Class Info</button>
+            <button onClick={handleUpdateClassToggle} className="noteButton">Update Class Info</button>
             {showUpdateClassForm ? 
             <form onSubmit={onHandleUpdateClass}>
                 <label>Grade Level:</label><input type="text" value={gradeLevel} onChange={handleGradeChange}></input>
                 <label>Subject:</label><input type="text" value={subject} onChange={handleSubjectChange}></input>
                 <label>Year:</label><input type="text" value={year} onChange={handleYearChange}></input>
-                <button type="submit">Update Class</button>
+                <button type="submit" className="noteButton">Update Class</button>
             </form> : null}
             {showNewStudentForm ? <div>
                 <form onSubmit={handleNewStudent}>
@@ -126,14 +126,14 @@ function UpdateClassForm({user}){
                     <label>Avatar</label><input type="text" value={avatar} onChange={(e) => setAvatar(e.target.value)}></input>
                     <label>Parent Name</label><input type="text" value={parentName} onChange={(e) => setParentName(e.target.value)}></input>
                     <label>Parent Number</label><input type="text" value={parentNumber} onChange={(e) => setParentNumber(e.target.value)}></input>
-                    <button type="submit">Add Student</button>
+                    <button type="submit" className="noteButton">Add Student</button>
                 </form>
             </div> : null}
-            <button onClick={() => setShowNewStudentForm(!showNewStudentForm)}> {showNewStudentForm ? "Abort": "Add Student"}</button>
+            <button onClick={() => setShowNewStudentForm(!showNewStudentForm)} className="noteButton"> {showNewStudentForm ? "Abort": "Add Student"}</button>
             {cohort.length === 0 ? null : cohortStudents.map(student => {
                 return <div key={student.id}>
                     <h3>{student.name}</h3>
-                    <button onClick={() => handleStudentDelete(student)}>Remove Student</button>
+                    <button onClick={() => handleStudentDelete(student)} className="noteButton">Remove Student</button>
                 </div>
             })}
          </div>

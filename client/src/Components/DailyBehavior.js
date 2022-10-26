@@ -33,12 +33,12 @@ function DailyBehavior(){
         <div className="dailyBehavior">
             <h1>Daily Behavior</h1>
             <form>
-            <select onChange={(e) => handleClassChange(e)}>
+            <select onChange={(e) => handleClassChange(e)} className="listChoice">
                 <option>Choose a Class</option>
                 {currentTeacherClasses}
             </select>
             </form>
-            {showClass ? <DailyBehaviorContainer classToShow={classToShow} /> : null}
+            {showClass ? <DailyBehaviorContainer classToShow={classToShow} setShowClass={setShowClass}/> : null}
          </div>
     )
 }

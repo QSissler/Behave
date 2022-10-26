@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react"
+import { useEffect, useState } from "react"
 import NoteCard from "./NoteCard"
 
 
@@ -24,7 +24,13 @@ function StudentProfileCard({chosenStudent, showUpdateStudentForm, setShowUpdate
     }, [chosenStudent])
 
     const notesToShow = notes.map(note => {
-        return <NoteCard className="note" note={note} notes={notes} setNotes={setNotes} handleNoteDelete={handleNoteDelete} key={note.id}/>
+        return <NoteCard className="note" 
+        note={note} 
+        notes={notes} 
+        setNotes={setNotes} 
+        handleNoteDelete={handleNoteDelete}
+        handleBehaviorColor={handleBehaviorColor}
+        key={note.id}/>
     })
 
     function handleNoteDelete(noteToDelete){
@@ -45,7 +51,6 @@ function StudentProfileCard({chosenStudent, showUpdateStudentForm, setShowUpdate
 
     function handleUpdateStudent(e){
         e.preventDefault()
-        console.log("did the thing")
         
        let updatedStudent = {
         name : studentName,
@@ -67,6 +72,18 @@ function StudentProfileCard({chosenStudent, showUpdateStudentForm, setShowUpdate
        setShowUpdateStudentForm(false)
     }
 
+    function handleBehaviorColor(int){
+        if (int === 0){
+            return "No Behavior Added"
+        } else if (int === 1){
+            return "🟢"
+        } else if (int === 2){
+            return "🟡"
+        } else if (int === 3){
+            return "🔴"
+        }
+    }
+
     return(
         <div>
         {showUpdateStudentForm ? (<div>
@@ -75,17 +92,17 @@ function StudentProfileCard({chosenStudent, showUpdateStudentForm, setShowUpdate
                 <label>Student Avatar</label><input type="text" value={studentAvatar} onChange={(e) => setStudentAvatar(e.target.value)}></input>
                 <label>Parent Name</label><input type="text" value={parentName} onChange={(e) => setParentName(e.target.value)}></input>
                 <label>Parent Number</label><input type="text" value={parentNumber} onChange={(e) => setParentNumber(e.target.value)}></input>
-                <button type="submit">Update Student</button>
+                <button type="submit" className="noteButton">Update Student</button>
             </form>
         </div>) : (
             <div className="studentInfo">
-            <img className="student-image" src={student.avatar === "" ? imagePlaceholder : student.avatar}></img>
+            <img className="profile-image" src={student.avatar === "" ? imagePlaceholder : student.avatar}></img>
             <h1>{student.name}</h1>
             <p>{student.parent_name}</p>
             <p>{student.parent_number}</p>
-            <p>Average Behavior: {student.behavior}</p>
+            <p>Average Behavior: {handleBehaviorColor(student.behavior)}</p>
             <p>Parents have been contacted {student.parent_contact_amount} times.</p>
-            <button onClick={handleShowStudentUpdateForm}>Update Student</button> 
+            <button onClick={handleShowStudentUpdateForm} className="noteButton">Update Student</button> 
             </div>
         )}
          <div className="noteCards">

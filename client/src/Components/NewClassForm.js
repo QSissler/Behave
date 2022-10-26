@@ -47,7 +47,7 @@ function NewClassForm({user, handleShowNewClassForm}){
                 <label>Grade Level:</label><input type="text" value={gradeLevel} onChange={handleGradeChange}></input>
                 <label>Subject:</label><input type="text" value={subject} onChange={handleSubjectChange}></input>
                 <label>Year:</label><input type="text" value={year} onChange={handleYearChange}></input>
-                <button type="submit">Create New Class</button>
+                <button type="submit" className="noteButton">Create New Class</button>
             </form>
             
          </div>
@@ -55,8 +55,3 @@ function NewClassForm({user, handleShowNewClassForm}){
 }
 
 export default NewClassForm;
-
-// t.string "grade"
-//     t.string "subject"
-//     t.string "year"
-//     t.integer "teacher_id"

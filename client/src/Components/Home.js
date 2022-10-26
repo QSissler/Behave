@@ -9,8 +9,9 @@ function Home({user}){
 
     return(
     
-            <div>
-            <h1>Welcome to Behavior Manager!</h1>
+            <div className="home-page">
+            <h1>Welcome to Behave!</h1>
+            <img className="welcome-image" src="https://clipart.world/wp-content/uploads/2020/08/group-of-happy-students-in-school-uniform-png.png"></img>
             </div>
     )
 }

@@ -32,7 +32,7 @@ function NavBar({ setUser, user }) {
       <NavLink exact to="/account">
         Account
       </NavLink>
-      <button onClick={handleLogoutClick}>Logout</button>
+      <button onClick={handleLogoutClick} className="logoutButton">Logout</button>
     </nav> ) :
     (<nav>
     <NavLink exact to="/">

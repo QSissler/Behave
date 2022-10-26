@@ -31,8 +31,8 @@ function Account({user, setUser}){
         return (
             <div key={cohort.id}>
             <p key={cohort.id}>{cohort.cohort_name}</p>
-            <button onClick={() => handleCohortDelete(cohort)}>Delete</button>
-            <button onClick={() => pushToUpdateClass(cohort)}>Update Class</button>
+            <button onClick={() => handleCohortDelete(cohort)} className="noteButton">Delete</button>
+            <button onClick={() => pushToUpdateClass(cohort)} className="noteButton">Update Class</button>
             </div>
         )
     })
@@ -73,7 +73,6 @@ function Account({user, setUser}){
     }
 
     function pushToUpdateClass(cohort){
-        console.log(cohort)
         history.push(`/cohorts/${cohort.id}`)
     }
 
@@ -82,30 +81,31 @@ function Account({user, setUser}){
         user ? (
         <div>
             <h1>Manage Your Account</h1>
-            <div className="profiles">
-            <div className="sidebar">
+            <div className="account">
+            <div className="sideAccount">
             <img className="student-image" src={user.avatar ? user.avatar : imagePlaceholder} ></img>
             <h2>{user.name}</h2>
             <h3>Room Number: {user.room_number}</h3>
             
-            {showUserUpdateForm ? null : <button onClick={handleUpdateUserForm}>Update Account</button>}
+            {showUserUpdateForm ? null : <button onClick={handleUpdateUserForm} className="noteButton">Update Account</button>}
             
             {showUserUpdateForm ? (
-                <form onSubmit={handleUpdateUser}>
+                <form onSubmit={handleUpdateUser} className="userUpdateForm">
                     <label>Username:</label><input value={userName} onChange={(e) => setUserName(e.target.value)}></input>
                     <label>Name:</label><input value={name} onChange={(e) => setName(e.target.value)}></input>
                     <label>Room Number:</label><input value={roomNumber} onChange={(e) => setRoomNumber(e.target.value)}></input>
                     <label>Avatar:</label><input value={avatar} onChange={(e) => setAvatar(e.target.value)}></input>
-                    <button type="submit">Update Account</button>
+                    <button type="submit" className="noteButton">Update Account</button>
                 </form>
             ) : null}
-            </div>
+            </div> 
             <div className="accountPageClasses">
             <h2>Classes</h2>
-            <button onClick={handleShowNewClassForm}>Add a Class</button>
+            <button onClick={handleShowNewClassForm} className="noteButton">Add a Class</button>
             {showNewClassForm ? <NewClassForm user={user} handleShowNewClassForm={handleShowNewClassForm}/> : null}
             {classesToShow}
-            </div> </div>
+            </div>
+            </div>
          </div>) : (<div>
             <h1>Loading</h1>
          </div>)

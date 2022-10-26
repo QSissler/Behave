@@ -1,15 +1,30 @@
-import { useState, useEffect } from "react"
-function DailyBehaviorCard({ student, fireOffAllNotes }){
+import { useState} from "react"
+function DailyBehaviorCard({ student, fireOffAllNotes, setFireOffAllNotes }){
     const [imagePlaceholder, setImagePlaceholder] = useState("https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png")
     const [note, setNote] = useState("")
     const [behaviorLevel, setBehaviorLevel] = useState("Green")
 
-    useEffect(() =>{
+    function handleBehaviorColor(color){
+        if (color === "Green"){
+            return 1
+        } else if (color === "Yellow"){
+            return 2
+        } else if (color === "Red"){
+            return 3
+        }
+    }
+
+    if (fireOffAllNotes) {
+        createNewNote()
+        setFireOffAllNotes(false)
+    }
+
+    function createNewNote(){
         let newNote = {
             student_id : student.id,
             parent_contact : false,
             note : note,
-            behavior_level : behaviorLevel
+            behavior_level : handleBehaviorColor(behaviorLevel)
             }
 
         fetch("/notes", {
@@ -20,15 +35,15 @@ function DailyBehaviorCard({ student, fireOffAllNotes }){
             body: JSON.stringify(newNote)
             })
             .then(res => res.json())
-    }, [fireOffAllNotes])
+    }
     
         return(
-            <div>
+            <div className="daily-behavior-card">
                <img className="student-image" src={student.avatar === "" ? imagePlaceholder : student.avatar} ></img>
                 <h3>{student.name}</h3>
                 <form>
                     <input type="text" value={note} onChange={(e) => setNote(e.target.value)}></input>
-                    <select value={behaviorLevel} onChange={(e) => setBehaviorLevel(e.target.value)}>
+                    <select value={behaviorLevel} onChange={(e) => setBehaviorLevel(e.target.value)} className="daily-behavior-select">
                         <option>Green</option>
                         <option>Yellow</option>
                         <option>Red</option>

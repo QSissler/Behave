@@ -20,6 +20,8 @@ function Login({user, setUser}){
     }
 
     function onSubmit(e){
+        setErrors([])
+        
         e.preventDefault()
         const user = {
         username,
@@ -38,10 +40,10 @@ function Login({user, setUser}){
                 history.push("/")
             })
         }else {
-            res.json().then(json => setErrors(json.errors))
+            res.json().then(error => setErrors(error.error))
         }
     })
-    history.push(`/`)
+    // history.push(`/`)
 }
    
 
@@ -58,6 +60,7 @@ function Login({user, setUser}){
        <div></div>
         <input type='submit' value='Log in!' />
       </form>
+      {errors.length > 0 ? errors.map((err) => <div>{err}</div>) : null}
       <h3>
         Don't have an account yet? Sign up!
       </h3>
