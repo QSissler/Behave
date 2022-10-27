@@ -2,7 +2,7 @@ class NotesController < ApplicationController
 
     def index
         student = Student.find(params[:id])
-        notes = student.notes
+        notes = student.notes.order_by_date_created
         render json: notes, status: :ok
     end
 

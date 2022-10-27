@@ -1,4 +1,5 @@
 class CohortsController < ApplicationController
+    rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
     def index
         current_teacher = Teacher.find_by(id: session[:teacher_id])
@@ -31,5 +32,9 @@ class CohortsController < ApplicationController
     def cohort_params
         params.permit(:grade, :subject, :year, :teacher_id)
     end
+
+    def record_invalid (invalid)
+        render json: { errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
+      end
 
 end

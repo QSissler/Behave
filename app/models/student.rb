@@ -9,7 +9,8 @@ class Student < ApplicationRecord
 
     def average_behavior_student
         if self.notes.length > 0
-         self.notes.pluck(:behavior_level).sum / self.notes.length
+         average = self.notes.pluck(:behavior_level).sum(0.0) / self.notes.length
+         average.round
         else 
             0
         end

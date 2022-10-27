@@ -33,7 +33,7 @@ function DailyBehavior(){
         <div className="dailyBehavior">
             <h1>Daily Behavior</h1>
             <form>
-            <select onChange={(e) => handleClassChange(e)} className="listChoice">
+            <select onChange={(e) => handleClassChange(e)} className="behavior-class-select">
                 <option>Choose a Class</option>
                 {currentTeacherClasses}
             </select>

@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
+import { AiFillWarning } from "react-icons/ai";
 
 
 function Signup({user, setUser}) {
@@ -40,7 +41,6 @@ function Signup({user, setUser}) {
               })
           }else {
               res.json().then(error => setErrors(error.errors))
-                // setErrors(Object.entries(json.errors)))
           }
       })
      
@@ -48,16 +48,16 @@ function Signup({user, setUser}) {
 
 
     return (
-        <div className="form"> 
+        <div className="login-form"> 
         <form onSubmit={onSubmit}>
             <h1>Create a New Account!</h1>
           <input placeholder="Username" type='text' name='username' value={username} onChange={e => handleUsernameChange(e)} />
         <div></div>
         <input placeholder="Password" type='password' name='password' value={password} onChange={e => handlePasswordChange(e)} />
         <div></div>
-        <input type='submit' value='Sign up!' />
+        <button type='submit' className="noteButton" >Create Account</button>
       </form>
-      {errors.length > 0 ? errors.map((err) => <div>{err}</div>) : null}
+      {errors.length > 0 ? errors.map((err) => <div className="errors"><AiFillWarning/> {err}</div>) : null}
         </div>
     )
 }

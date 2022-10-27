@@ -1,4 +1,8 @@
 import { useState } from "react"
+import GreenSmile from "../Image/GreenSmile.png"
+import YellowSmile from "../Image/YellowSmile.png"
+import RedSmile from "../Image/RedSmile.png"
+import { BsArrowLeft } from "react-icons/bs";
 
 function NoteCard({note, handleNoteDelete, notes, setNotes}){
     const [showNoteUpdateForm, setShowNoteUpdateForm] = useState(false)
@@ -36,11 +40,11 @@ function NoteCard({note, handleNoteDelete, notes, setNotes}){
         if (int === 0){
             return "No Behavior Added"
         } else if (int === 1){
-            return "🟢"
+            return GreenSmile
         } else if (int === 2){
-            return "🟡"
+            return YellowSmile
         } else if (int === 3){
-            return "🔴"
+            return RedSmile
         }
     }
 
@@ -81,33 +85,32 @@ function NoteCard({note, handleNoteDelete, notes, setNotes}){
 
     return(
         <div className="note">
+            <h3>{note.nice_created_date}</h3>
             {showNoteUpdateForm ? <div>
-                <h1>{note.nice_created_date}</h1>
-                <form onSubmit={handleUpdateNote}>
-                    <label>Parent Contact</label><input 
+                <form onSubmit={handleUpdateNote} className="note-card-update-form">
+                <BsArrowLeft className="back-arrow" onClick={handleNoteUpdate}/>
+                <label>Parent Contact<input 
                 type="checkbox" 
                 value={parentContact} 
                 checked={isChecked}
                 onChange={() => {
                 setParentContact(!parentContact)
-                setIsChecked(!isChecked)}}></input>
-                    <label>Behavior Level</label>
-                    <select value={behaviorLevel} onChange={(e) => setBehaviorLevel(e.target.value)}>
+                setIsChecked(!isChecked)}}></input></label>
+                    <select value={behaviorLevel} onChange={(e) => setBehaviorLevel(e.target.value)} className="note-form-select">
                         <option>Green</option>
                         <option>Yellow</option>
                         <option>Red</option>
                     </select>
-                    <label>Note</label><input type="text" value={noteText} onChange={(e) => setNoteText(e.target.value)}></input>
-                    <button type="submit" className="noteButton">Update Note</button>
+                    <textarea type="textarea" rows="2" value={noteText} onChange={(e) => setNoteText(e.target.value)}></textarea>
+                    <button type="submit" className="note-update-btn">Update Note</button>
                 </form>
-                <button onClick={handleNoteUpdate}>Abort</button>
-            </div> : <div>
-            <h3>{note.nice_created_date}</h3>
+            </div> : <div className="note-contents">
+            <img src={handleBehaviorNumberToColor(note.behavior_level)} className="smile-image"></img>
+            <br></br>
             <label> Parent Contact: {note.parent_contact ? "Yes" : "No"}</label>
-            <p>Behavior Color: {handleBehaviorNumberToColor(note.behavior_level)}</p>
             <p>{note.note}</p>
-            <button onClick={handleNoteUpdate} className="noteButton">Update Note</button>
-            <button onClick={() => handleNoteDelete(note)} className="noteButton">Delete Note</button>
+            <button onClick={handleNoteUpdate} className="update-note-button">Update Note</button>
+            <button onClick={() => handleNoteDelete(note)} className="delete-note-button">Delete Note</button>
             </div>}
 
          </div>

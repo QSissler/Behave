@@ -16,7 +16,6 @@ function DailyBehaviorCard({ student, fireOffAllNotes, setFireOffAllNotes }){
 
     if (fireOffAllNotes) {
         createNewNote()
-        setFireOffAllNotes(false)
     }
 
     function createNewNote(){
@@ -35,6 +34,8 @@ function DailyBehaviorCard({ student, fireOffAllNotes, setFireOffAllNotes }){
             body: JSON.stringify(newNote)
             })
             .then(res => res.json())
+
+            setFireOffAllNotes(false)
     }
     
         return(
@@ -42,7 +43,7 @@ function DailyBehaviorCard({ student, fireOffAllNotes, setFireOffAllNotes }){
                <img className="student-image" src={student.avatar === "" ? imagePlaceholder : student.avatar} ></img>
                 <h3>{student.name}</h3>
                 <form>
-                    <input type="text" value={note} onChange={(e) => setNote(e.target.value)}></input>
+                    <input type="text" placeholder="Add note" value={note} onChange={(e) => setNote(e.target.value)}></input>
                     <select value={behaviorLevel} onChange={(e) => setBehaviorLevel(e.target.value)} className="daily-behavior-select">
                         <option>Green</option>
                         <option>Yellow</option>

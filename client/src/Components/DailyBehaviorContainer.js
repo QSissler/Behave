@@ -12,7 +12,7 @@ function DailyBehaviorContainer({ classToShow, setShowClass }){
     function handleFireOffSubmitAllNotes(){
         setFireOffAllNotes(true)
         alert("All Notes Submitted")
-        setShowClass(false)
+        // setShowClass(false)
     }
 
    
@@ -21,9 +21,11 @@ function DailyBehaviorContainer({ classToShow, setShowClass }){
 
     return(
         <div>
-            <h1>{classToShow[0].cohort_name}</h1>
+            <h2>{classToShow[0].cohort_name}</h2>
+            <button onClick={handleFireOffSubmitAllNotes} className="submit-all-notes">Submit All Notes</button>
+            <div className="daily-behavior-cards">
             {classToShow.length !== 0 ? studentsToShow : null}
-            <button onClick={handleFireOffSubmitAllNotes} className="noteButton">Submit All Notes</button>
+            </div>
          </div>
     )
 }

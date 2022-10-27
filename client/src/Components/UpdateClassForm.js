@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { BsArrowLeft } from "react-icons/bs";
+
 function UpdateClassForm({user}){
 
     let { id } = useParams()
@@ -110,32 +112,36 @@ function UpdateClassForm({user}){
 
     return(
         <div className="update-class">
-            <h1>Update Class</h1>
+            {/* <h1>Update Class</h1> */}
             <h2>{cohort.cohort_name}</h2>
-            <button onClick={handleUpdateClassToggle} className="noteButton">Update Class Info</button>
+            {showUpdateClassForm || showNewStudentForm ? null : <button onClick={handleUpdateClassToggle} className="update-class-btn">Update Class Information</button>}
             {showUpdateClassForm ? 
-            <form onSubmit={onHandleUpdateClass}>
+            <form onSubmit={onHandleUpdateClass} className="class-update-form">
+                 <BsArrowLeft className="back-arrow" onClick={handleUpdateClassToggle}/>
                 <label>Grade Level:</label><input type="text" value={gradeLevel} onChange={handleGradeChange}></input>
                 <label>Subject:</label><input type="text" value={subject} onChange={handleSubjectChange}></input>
                 <label>Year:</label><input type="text" value={year} onChange={handleYearChange}></input>
                 <button type="submit" className="noteButton">Update Class</button>
             </form> : null}
             {showNewStudentForm ? <div>
-                <form onSubmit={handleNewStudent}>
-                    <label>Name</label><input type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
-                    <label>Avatar</label><input type="text" value={avatar} onChange={(e) => setAvatar(e.target.value)}></input>
-                    <label>Parent Name</label><input type="text" value={parentName} onChange={(e) => setParentName(e.target.value)}></input>
-                    <label>Parent Number</label><input type="text" value={parentNumber} onChange={(e) => setParentNumber(e.target.value)}></input>
+                <form onSubmit={handleNewStudent} className="class-update-form">
+                    <BsArrowLeft className="back-arrow" onClick={() => setShowNewStudentForm(false)}/>
+                    <input placeholder="Student Name" type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
+                    <input placeholder="Student Avatar" type="text" value={avatar} onChange={(e) => setAvatar(e.target.value)}></input>
+                    <input placeholder="Parent Name" type="text" value={parentName} onChange={(e) => setParentName(e.target.value)}></input>
+                    <input placeholder="Parent Number" type="text" value={parentNumber} onChange={(e) => setParentNumber(e.target.value)}></input>
                     <button type="submit" className="noteButton">Add Student</button>
                 </form>
             </div> : null}
-            <button onClick={() => setShowNewStudentForm(!showNewStudentForm)} className="noteButton"> {showNewStudentForm ? "Abort": "Add Student"}</button>
+            {showUpdateClassForm || showNewStudentForm ? null : <button onClick={() => setShowNewStudentForm(!showNewStudentForm)} className="noteButton">Add Student</button>}
+            <div className="student-edit-list">
             {cohort.length === 0 ? null : cohortStudents.map(student => {
-                return <div key={student.id}>
+                return <div key={student.id} className="student-remove-card" >
                     <h3>{student.name}</h3>
                     <button onClick={() => handleStudentDelete(student)} className="noteButton">Remove Student</button>
                 </div>
             })}
+            </div>
          </div>
     )
 }

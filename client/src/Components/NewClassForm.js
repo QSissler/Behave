@@ -1,5 +1,6 @@
 import { useState, useContext } from "react"
 import { CohortContext } from "../Context/CohortProvider"
+import { BsArrowLeft } from "react-icons/bs";
 
 function NewClassForm({user, handleShowNewClassForm}){
 
@@ -43,10 +44,11 @@ function NewClassForm({user, handleShowNewClassForm}){
     
     return(
         <div>
-            <form onSubmit={onHandleCreateClass}>
-                <label>Grade Level:</label><input type="text" value={gradeLevel} onChange={handleGradeChange}></input>
-                <label>Subject:</label><input type="text" value={subject} onChange={handleSubjectChange}></input>
-                <label>Year:</label><input type="text" value={year} onChange={handleYearChange}></input>
+            <form onSubmit={onHandleCreateClass} className="new-class-form">
+            <BsArrowLeft className="back-arrow" onClick={handleShowNewClassForm}/>
+                <input type="text" value={gradeLevel} onChange={handleGradeChange} placeholder="Grade Level"></input>
+                <input type="text" value={subject} onChange={handleSubjectChange} placeholder="Subject"></input>
+                <input type="text" value={year} onChange={handleYearChange} placeholder="Year"></input>
                 <button type="submit" className="noteButton">Create New Class</button>
             </form>
             

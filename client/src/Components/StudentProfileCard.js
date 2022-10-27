@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react"
 import NoteCard from "./NoteCard"
+import GreenSmile from "../Image/GreenSmile.png"
+import YellowSmile from "../Image/YellowSmile.png"
+import RedSmile from "../Image/RedSmile.png"
+import { BsArrowLeft } from "react-icons/bs";
+
+
 
 
 function StudentProfileCard({chosenStudent, showUpdateStudentForm, setShowUpdateStudentForm}){
@@ -10,6 +16,11 @@ function StudentProfileCard({chosenStudent, showUpdateStudentForm, setShowUpdate
     const [studentAvatar, setStudentAvatar] = useState("")
     const [parentName, setParentName] = useState("")
     const [parentNumber, setParentNumber] = useState("")
+    const [showNoteForm, setShowNoteForm] = useState(false)
+    const [behaviorLevel, setBehaviorLevel] = useState("Green")
+    const [parentContact, setParentContact] = useState(false)
+    const [isChecked, setIsChecked] = useState(false)
+    const [note, setNote] = useState("")
 
     useEffect(() => {
         fetch(`/students/${chosenStudent.id}`)
@@ -76,18 +87,58 @@ function StudentProfileCard({chosenStudent, showUpdateStudentForm, setShowUpdate
         if (int === 0){
             return "No Behavior Added"
         } else if (int === 1){
-            return "🟢"
+            return GreenSmile
         } else if (int === 2){
-            return "🟡"
+            return YellowSmile
         } else if (int === 3){
-            return "🔴"
+            return RedSmile
         }
     }
 
+    function handleShowAddNoteForm(){
+        setShowNoteForm(!showNoteForm)
+    }
+
+    function handleBehaviorColorWordToInt(color){
+        if (color === "Green"){
+            return 1
+        } else if (color === "Yellow"){
+            return 2
+        } else if (color === "Red"){
+            return 3
+        }
+    }
+
+    function handleSubmitNewNote(e){
+        e.preventDefault();
+        let newNote = {
+            student_id : student.id,
+            parent_contact : parentContact,
+            note : note,
+            behavior_level : handleBehaviorColorWordToInt(behaviorLevel)
+        }
+
+        fetch("/notes", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newNote)
+            })
+            .then(res => res.json())
+            .then(data => setNotes([data, ...notes]))
+
+        setBehaviorLevel("Green")
+        setParentContact(false)
+        setNote("")
+        setIsChecked(false)
+        setShowNoteForm(false)
+    }
+
     return(
-        <div>
+        <div className="student-profile">
         {showUpdateStudentForm ? (<div>
-            <form onSubmit={handleUpdateStudent}>
+            <form onSubmit={handleUpdateStudent} className="student-update-form">
                 <label>Student Name</label><input type="text" value={studentName} onChange={(e) => setStudentName(e.target.value)}></input>
                 <label>Student Avatar</label><input type="text" value={studentAvatar} onChange={(e) => setStudentAvatar(e.target.value)}></input>
                 <label>Parent Name</label><input type="text" value={parentName} onChange={(e) => setParentName(e.target.value)}></input>
@@ -100,9 +151,30 @@ function StudentProfileCard({chosenStudent, showUpdateStudentForm, setShowUpdate
             <h1>{student.name}</h1>
             <p>{student.parent_name}</p>
             <p>{student.parent_number}</p>
-            <p>Average Behavior: {handleBehaviorColor(student.behavior)}</p>
+            <div>Average Behavior: <img src={handleBehaviorColor(student.behavior)} className="average-image"/></div>
             <p>Parents have been contacted {student.parent_contact_amount} times.</p>
-            <button onClick={handleShowStudentUpdateForm} className="noteButton">Update Student</button> 
+            <button onClick={handleShowStudentUpdateForm} className="update-student-button">Update Student</button> 
+            <button onClick={handleShowAddNoteForm}className="add-note-button">{showNoteForm ? "Hide Note" :" Add Note"}</button>
+            {showNoteForm ? <form onSubmit={(e) => handleSubmitNewNote(e)} className="form-style-3">
+            <textarea className="note-comment-input" type="textarea" rows="2" value={note} onChange={(e) => setNote(e.target.value)} placeholder="Comment"></textarea>
+            {/* <div className="contact-and-level"> */}
+            <select onChange={(e) => setBehaviorLevel(e.target.value)} value={behaviorLevel} className="daily-behavior-select">
+                    <option>Green</option>
+                    <option>Yellow</option>
+                    <option>Red</option>
+                </select>
+            <label>Parent Contact?
+                <input 
+                type="checkbox" 
+                value={parentContact} 
+                checked={isChecked}
+                onChange={() => {
+                setParentContact(!parentContact)
+                setIsChecked(!isChecked)}}>
+                </input></label>
+                {/* </div> */}
+                <button type="submit" className="submit-new-note-button">Submit Note</button>
+            </form> : null}
             </div>
         )}
          <div className="noteCards">

@@ -2,6 +2,7 @@ import  { useState, useContext, useEffect} from "react"
 import {useHistory} from 'react-router-dom'
 import { CohortContext } from "../Context/CohortProvider"
 import NewClassForm from "./NewClassForm"
+import { BsArrowLeft } from "react-icons/bs";
 
 
 function Account({user, setUser}){
@@ -31,7 +32,7 @@ function Account({user, setUser}){
         return (
             <div key={cohort.id}>
             <p key={cohort.id}>{cohort.cohort_name}</p>
-            <button onClick={() => handleCohortDelete(cohort)} className="noteButton">Delete</button>
+            <button onClick={() => handleCohortDelete(cohort)} className="delete-class-button">Delete</button>
             <button onClick={() => pushToUpdateClass(cohort)} className="noteButton">Update Class</button>
             </div>
         )
@@ -83,27 +84,32 @@ function Account({user, setUser}){
             <h1>Manage Your Account</h1>
             <div className="account">
             <div className="sideAccount">
+            {showUserUpdateForm ? null :
+            <div>
             <img className="student-image" src={user.avatar ? user.avatar : imagePlaceholder} ></img>
             <h2>{user.name}</h2>
             <h3>Room Number: {user.room_number}</h3>
-            
-            {showUserUpdateForm ? null : <button onClick={handleUpdateUserForm} className="noteButton">Update Account</button>}
-            
+            <button onClick={handleUpdateUserForm} className="noteButton">Update Account</button>
+            </div>}
             {showUserUpdateForm ? (
+                <div>
                 <form onSubmit={handleUpdateUser} className="userUpdateForm">
+                    <BsArrowLeft className="back-arrow" onClick={handleUpdateUserForm}/>
                     <label>Username:</label><input value={userName} onChange={(e) => setUserName(e.target.value)}></input>
                     <label>Name:</label><input value={name} onChange={(e) => setName(e.target.value)}></input>
                     <label>Room Number:</label><input value={roomNumber} onChange={(e) => setRoomNumber(e.target.value)}></input>
                     <label>Avatar:</label><input value={avatar} onChange={(e) => setAvatar(e.target.value)}></input>
-                    <button type="submit" className="noteButton">Update Account</button>
+                    <button type="submit" className="update-account-btn">Update Account</button>
                 </form>
+                </div>
+                
             ) : null}
             </div> 
             <div className="accountPageClasses">
             <h2>Classes</h2>
-            <button onClick={handleShowNewClassForm} className="noteButton">Add a Class</button>
+            {showNewClassForm ? null : <button onClick={handleShowNewClassForm} className="noteButton">Add a Class</button>}
             {showNewClassForm ? <NewClassForm user={user} handleShowNewClassForm={handleShowNewClassForm}/> : null}
-            {classesToShow}
+            {showNewClassForm ? null : classesToShow}
             </div>
             </div>
          </div>) : (<div>

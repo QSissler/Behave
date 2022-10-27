@@ -1,5 +1,7 @@
 class TeachersController < ApplicationController
         skip_before_action :authorize, only: :create
+        rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
+        
     
         def index
             teachers = Teacher.all
@@ -24,7 +26,11 @@ class TeachersController < ApplicationController
     
         private
         def teacher_params
-            params.permit(:username, :name, :room_number, :avatar)
+            params.permit(:username, :password, :name, :room_number, :avatar)
+        end
+
+        def record_invalid (invalid)
+            render json: { errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
         end
     
 end

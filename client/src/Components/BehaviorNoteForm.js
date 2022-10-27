@@ -46,7 +46,14 @@ function BehaviorNoteForm({chosenStudent, selectedCohort}){
     return(
         <div className="notesForm">
             <form onSubmit={(e) => handleSubmitNewNote(e)} className="form-style-3">
-            <label>Parent Contact?</label>
+            <textarea className="note-comment-input" type="textarea" rows="2" value={note} onChange={(e) => setNote(e.target.value)} placeholder="Comment"></textarea>
+            {/* <div className="contact-and-level"> */}
+            <select onChange={(e) => setBehaviorLevel(e.target.value)} value={behaviorLevel} className="daily-behavior-select">
+                    <option>Green</option>
+                    <option>Yellow</option>
+                    <option>Red</option>
+                </select>
+            <label>Parent Contact?
                 <input 
                 type="checkbox" 
                 value={parentContact} 
@@ -54,14 +61,9 @@ function BehaviorNoteForm({chosenStudent, selectedCohort}){
                 onChange={() => {
                 setParentContact(!parentContact)
                 setIsChecked(!isChecked)}}>
-                </input>
-            <label>Note:</label><input type="text" value={note} onChange={(e) => setNote(e.target.value)} ></input>
-                <select onChange={(e) => setBehaviorLevel(e.target.value)} value={behaviorLevel} className="daily-behavior-select">
-                    <option>Green</option>
-                    <option>Yellow</option>
-                    <option>Red</option>
-                </select>
-                <button type="submit" className="noteButton">Submit Note</button>
+                </input></label>
+                {/* </div> */}
+                <button type="submit" className="submit-new-note-button">Submit Note</button>
             </form>
          </div>
     )

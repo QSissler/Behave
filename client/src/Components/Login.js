@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import {useHistory} from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { AiFillWarning } from "react-icons/ai";
 
 
 
@@ -21,7 +22,7 @@ function Login({user, setUser}){
 
     function onSubmit(e){
         setErrors([])
-        
+
         e.preventDefault()
         const user = {
         username,
@@ -43,14 +44,13 @@ function Login({user, setUser}){
             res.json().then(error => setErrors(error.error))
         }
     })
-    // history.push(`/`)
 }
    
 
    
 
     return(
-        <div className="form">
+        <div className="login-form">
             <h2>Log In</h2>
         <form onSubmit={onSubmit}>
         <input placeholder="Username"type='text' name='username' value={username} onChange={(e) => handleUsernameChange(e)} />
@@ -58,13 +58,12 @@ function Login({user, setUser}){
         <input placeholder="Password" type='password' name='password' value={password} onChange={(e) => handlePasswordChange(e)} />
        
        <div></div>
-        <input type='submit' value='Log in!' />
+        <button type='submit' className="noteButton">Log in!</button>
       </form>
-      {errors.length > 0 ? errors.map((err) => <div>{err}</div>) : null}
+      {errors.length > 0 ? errors.map((err) => <div className="errors"><AiFillWarning/> {err}</div>) : null}
       <h3>
-        Don't have an account yet? Sign up!
+        Don't have an account yet? <Link exact to="/signup" className="sign-up-link">Sign up!</Link>
       </h3>
-      <Link exact to="/signup">Sign up now!</Link>
          </div>
     )
 }
