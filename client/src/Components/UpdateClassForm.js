@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { useParams } from "react-router-dom"
 import { BsArrowLeft } from "react-icons/bs";
 
@@ -53,7 +53,7 @@ function UpdateClassForm({user}){
         body: JSON.stringify(newStudent)
         })
         .then(res => res.json())
-        .then(data => addNewStudentToCohort(data))
+        .then(data => {addNewStudentToCohort(data)})
 
         setName("")
         setAvatar("")
@@ -116,7 +116,6 @@ function UpdateClassForm({user}){
 
     return(
         <div className="update-class">
-            {/* <h1>Update Class</h1> */}
             <h2>{cohort.cohort_name}</h2>
             {showUpdateClassForm || showNewStudentForm ? null : <button onClick={handleUpdateClassToggle} className="update-class-btn">Update Class Information</button>}
             {showUpdateClassForm ? 

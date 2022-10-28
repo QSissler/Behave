@@ -1,4 +1,4 @@
-import  { useState, useContext, useEffect} from "react"
+import  { useState, useContext} from "react"
 import {useHistory} from 'react-router-dom'
 import { CohortContext } from "../Context/CohortProvider"
 import NewClassForm from "./NewClassForm"
