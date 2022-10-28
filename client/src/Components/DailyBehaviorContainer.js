@@ -1,18 +1,23 @@
 import { useState } from "react"
 import DailyBehaviorCard from "./DailyBehaviorCard";
 
-function DailyBehaviorContainer({ classToShow, setShowClass }){
+function DailyBehaviorContainer({ classToShow, setShowClass, setShowSubmitMessage, setCurrentCohort }){
     const [fireOffAllNotes, setFireOffAllNotes] = useState(false)
+    
     
 
     const studentsToShow = classToShow[0].students.map(student => {
-        return <DailyBehaviorCard student={student} fireOffAllNotes={fireOffAllNotes} setFireOffAllNotes={setFireOffAllNotes} key={student.id}/>
+        return <DailyBehaviorCard student={student} 
+        setShowClass={setShowClass} 
+        fireOffAllNotes={fireOffAllNotes} 
+        setFireOffAllNotes={setFireOffAllNotes} 
+        setShowSubmitMessage={setShowSubmitMessage}
+        key={student.id}/>
     })
 
     function handleFireOffSubmitAllNotes(){
         setFireOffAllNotes(true)
-        alert("All Notes Submitted")
-        // setShowClass(false)
+       
     }
 
    

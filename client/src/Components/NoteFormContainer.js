@@ -10,6 +10,7 @@ function NoteFormContainer(){
     const [chosenStudent, setChosenStudent] = useState([])
     const [showNoteForm, setShowNoteForm] = useState(false)
     const [studentForNote, setStudentForNote] = useState([])
+    const [showNoteSubmitted, setShowNoteSubmitted] = useState(false)
 
     const currentTeacherClasses = cohorts.map(cohort => {
         return <option key={cohort.id}>{cohort.cohort_name}</option>
@@ -58,7 +59,8 @@ function NoteFormContainer(){
                     return <option key={student.id}>{student.name}</option>})}
                 </select> : null
                 }
-                {showNoteForm ? <BehaviorNoteForm chosenStudent={chosenStudent} selectedCohort={selectedCohort}/> : null}
+                {showNoteSubmitted ? <h3>Note Submitted!</h3> : null}
+                {showNoteForm ? <BehaviorNoteForm chosenStudent={chosenStudent} selectedCohort={selectedCohort} setShowNoteSubmitted={setShowNoteSubmitted}/> : null}
                 </div>
          </div>
     )

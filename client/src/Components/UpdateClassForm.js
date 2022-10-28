@@ -55,6 +55,10 @@ function UpdateClassForm({user}){
         .then(res => res.json())
         .then(data => addNewStudentToCohort(data))
 
+        setName("")
+        setAvatar("")
+        setParentName("")
+        setParentNumber("")
         setShowNewStudentForm(false)
    }
 

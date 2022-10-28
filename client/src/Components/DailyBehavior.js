@@ -1,12 +1,14 @@
 import  { useState, useContext} from "react"
 import { CohortContext } from "../Context/CohortProvider"
 import DailyBehaviorContainer from "./DailyBehaviorContainer"
+import { MdOutlineNoteAlt } from "react-icons/md";
 
 function DailyBehavior(){
 
     let [cohorts, setCohorts] = useContext(CohortContext)
     const [currentCohort, setCurrentCohort] = useState([])
     const [showClass, setShowClass] = useState(false)
+    const [showSubmitMessage, setShowSubmitMessage] = useState(false)
 
 
     const currentTeacherClasses = cohorts.map(cohort => {
@@ -24,9 +26,12 @@ function DailyBehavior(){
         setCurrentCohort(e.target.value)
         
         if (showClass === false){
-            setShowClass(!showClass)
+            setShowClass(true)
         }
+
+        setShowSubmitMessage(false)
     }
+
 
 
     return(
@@ -38,7 +43,12 @@ function DailyBehavior(){
                 {currentTeacherClasses}
             </select>
             </form>
-            {showClass ? <DailyBehaviorContainer classToShow={classToShow} setShowClass={setShowClass}/> : null}
+            {showSubmitMessage ? <h2 className="submit-words">All Notes Submitted!</h2> : null}
+            {showClass ? <DailyBehaviorContainer classToShow={classToShow} 
+            setShowClass={setShowClass} 
+            setShowSubmitMessage={setShowSubmitMessage}
+            setCurrentCohort={setCurrentCohort}
+            /> : null}
          </div>
     )
 }

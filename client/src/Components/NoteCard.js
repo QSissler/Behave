@@ -107,7 +107,7 @@ function NoteCard({note, handleNoteDelete, notes, setNotes}){
             </div> : <div className="note-contents">
             <img src={handleBehaviorNumberToColor(note.behavior_level)} className="smile-image"></img>
             <br></br>
-            <label> Parent Contact: {note.parent_contact ? "Yes" : "No"}</label>
+            <label>{note.parent_contact ? "Parent was contacted." : null}</label>
             <p>{note.note}</p>
             <button onClick={handleNoteUpdate} className="update-note-button">Update Note</button>
             <button onClick={() => handleNoteDelete(note)} className="delete-note-button">Delete Note</button>

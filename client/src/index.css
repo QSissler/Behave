@@ -213,12 +213,11 @@ nav a:active {
   height: 30px;
   width: 30px;
   margin: 10px;
-
 }
 
 .average-image{
-  height: 30px;
-  width: 30px;
+  height: 15px;
+  width: 15px;
 }
 
 
@@ -435,6 +434,7 @@ select {
   border: none;
 }
 
+
 .behavior-class-select {
   width: 20em;
   height: 3em;
@@ -455,7 +455,7 @@ select {
   border-radius: .25em;
   color: white;
   border: none;
-  margin: 20px;
+  margin-top: 20px;
 
 }
 
@@ -565,6 +565,36 @@ margin: 15px;
   color: white;
   padding: 5px 10px;
 }
+.parent-info{
+  /* border: #56BBF1 solid;   */
+  width: 35%;
+  margin-bottom: 10px;
+}
+
+.behavior-info{ 
+  /* border: #56BBF1 solid;   */
+  width: 35%;
+  margin-bottom: 10px;
+  
+}
+
+.profile-info {
+  display: flex;
+  justify-content: center;
+}
+
+.behavior-card-input{
+  border-radius: 8em;
+  border: #56BBF1 solid;
+  padding: 10px;
+  margin: 0px;
+}
+
+.submit-words{
+  color: #3CCF4E;
+}
+
+
 
 
 

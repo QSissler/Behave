@@ -139,6 +139,7 @@ function StudentProfileCard({chosenStudent, showUpdateStudentForm, setShowUpdate
         <div className="student-profile">
         {showUpdateStudentForm ? (<div>
             <form onSubmit={handleUpdateStudent} className="student-update-form">
+                <BsArrowLeft className="back-arrow" onClick={() => setShowUpdateStudentForm(false)}/>
                 <label>Student Name</label><input type="text" value={studentName} onChange={(e) => setStudentName(e.target.value)}></input>
                 <label>Student Avatar</label><input type="text" value={studentAvatar} onChange={(e) => setStudentAvatar(e.target.value)}></input>
                 <label>Parent Name</label><input type="text" value={parentName} onChange={(e) => setParentName(e.target.value)}></input>
@@ -149,10 +150,15 @@ function StudentProfileCard({chosenStudent, showUpdateStudentForm, setShowUpdate
             <div className="studentInfo">
             <img className="profile-image" src={student.avatar === "" ? imagePlaceholder : student.avatar}></img>
             <h1>{student.name}</h1>
+            <div className="profile-info">
+            <div className="parent-info">
+            <h3>Contact Information</h3>
             <p>{student.parent_name}</p>
             <p>{student.parent_number}</p>
-            <div>Average Behavior: <img src={handleBehaviorColor(student.behavior)} className="average-image"/></div>
-            <p>Parents have been contacted {student.parent_contact_amount} times.</p>
+            </div>
+            <div className="behavior-info"> <h3>Behavior</h3> Average Behavior: <img src={handleBehaviorColor(student.behavior)} className="average-image"/>
+            <p>Parents have been contacted {student.parent_contact_amount} times.</p></div>
+            </div>
             <button onClick={handleShowStudentUpdateForm} className="update-student-button">Update Student</button> 
             <button onClick={handleShowAddNoteForm}className="add-note-button">{showNoteForm ? "Hide Note" :" Add Note"}</button>
             {showNoteForm ? <form onSubmit={(e) => handleSubmitNewNote(e)} className="form-style-3">

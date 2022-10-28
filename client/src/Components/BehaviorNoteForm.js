@@ -1,11 +1,21 @@
 import { useState, useEffect } from "react"
 
-function BehaviorNoteForm({chosenStudent, selectedCohort}){
+function BehaviorNoteForm({chosenStudent, selectedCohort, setShowNoteSubmitted}){
     const [behaviorLevel, setBehaviorLevel] = useState("Green")
     const [parentContact, setParentContact] = useState(false)
     const [isChecked, setIsChecked] = useState(false)
     const [note, setNote] = useState("")
     const [student, setStudent] = useState([])
+
+    function handleBehaviorColor(color){
+        if (color === "Green"){
+            return 1
+        } else if (color === "Yellow"){
+            return 2
+        } else if (color === "Red"){
+            return 3
+        }
+    }
 
 
     function handleSubmitNewNote(e){
@@ -14,7 +24,7 @@ function BehaviorNoteForm({chosenStudent, selectedCohort}){
             student_id : student[0].id,
             parent_contact : parentContact,
             note : note,
-            behavior_level : behaviorLevel
+            behavior_level : handleBehaviorColor(behaviorLevel)
         }
 
         fetch("/notes", {
@@ -30,6 +40,7 @@ function BehaviorNoteForm({chosenStudent, selectedCohort}){
         setParentContact(false)
         setNote("")
         setIsChecked(false)
+        setShowNoteSubmitted(true)
     }
 
 

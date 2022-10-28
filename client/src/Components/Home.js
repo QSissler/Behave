@@ -1,6 +1,6 @@
 import { useState } from "react"
-import NewClassForm from "./NewClassForm"
-function Home({user}){
+
+function Home(){
     const [showForm, setShowForm] = useState(false)
 
     function handleShowForm(){

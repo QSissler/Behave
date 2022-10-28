@@ -7,7 +7,7 @@ import Home from "./Components/Home";
 import Signup from "./Components/Signup";
 import DailyBehavior from "./Components/DailyBehavior";
 import Account from "./Components/Account";
-import StudentProfileContainer from "./Components/StudentProfileContainer";
+import StudentProfilesSideBarContainer from "./Components/StudentProfilesSidebarContainer";
 import NoteFormContainer from "./Components/NoteFormContainer";
 import UpdateClassForm from "./Components/UpdateClassForm";
 import { CohortProvider } from "./Context/CohortProvider";
@@ -56,7 +56,7 @@ function App() {
           </Route>
 
           <Route exact path="/studentprofiles">
-            <StudentProfileContainer />
+            <StudentProfilesSideBarContainer />
           </Route>
 
           <Route exact path="/addnote">
