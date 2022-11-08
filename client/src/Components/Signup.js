@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom'
 import { AiFillWarning } from "react-icons/ai";
 
 
-function Signup({user, setUser}) {
+function Signup({setUser}) {
    
     const [username, SetUsername] = useState("")
     const [password, SetPassword] = useState("")

@@ -43,11 +43,11 @@ function App() {
         </Route>
 
         <Route exact path="/login">
-            <Login setUser={setUser} user={user}/>
+            <Login setUser={setUser}/>
           </Route>
 
           <Route exact path="/signup">
-            <Signup setUser={setUser} user={user}/>
+            <Signup setUser={setUser}/>
           </Route>
 
           <CohortProvider>

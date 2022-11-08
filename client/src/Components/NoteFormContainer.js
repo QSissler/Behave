@@ -33,6 +33,7 @@ function NoteFormContainer(){
     }
 
     function handleStudentChange(e){
+        setShowNoteSubmitted(false)
         setChosenStudent(e.target.value)
 
         if (e.target.value === "Choose Student"){
@@ -59,7 +60,7 @@ function NoteFormContainer(){
                     return <option key={student.id}>{student.name}</option>})}
                 </select> : null
                 }
-                {showNoteSubmitted ? <h3>Note Submitted!</h3> : null}
+                {showNoteSubmitted ? <h2 className="submit-words">Note Submitted!</h2> : null}
                 {showNoteForm ? <BehaviorNoteForm chosenStudent={chosenStudent} selectedCohort={selectedCohort} setShowNoteSubmitted={setShowNoteSubmitted}/> : null}
                 </div>
          </div>

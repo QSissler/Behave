@@ -5,7 +5,7 @@ import { AiFillWarning } from "react-icons/ai";
 
 
 
-function Login({user, setUser}){
+function Login({setUser}){
 
     const [username, SetUsername] = useState("")
     const [password, SetPassword] = useState("")
