@@ -231,7 +231,6 @@ nav a:active {
 h1 {
   text-align: center;
   color: #56BBF1;
-  /* background-color: #4D77FF; */
 }
 
 .studentInfo {
@@ -239,7 +238,6 @@ h1 {
 }
 
 .dailyBehavior {
-  /* display: flex; */
   text-align: center;
 }
 
@@ -256,12 +254,10 @@ h1 {
   width: 200px;
   padding: 10px;
   margin-top: 25px;
-  /* background-color: rgb(180, 255, 159, .5); */
   border-radius: 12px;
   border-color: #56BBF1;
   color: #56BBF1;
   text-align: center;
-  /* opacity: .25; */
 }
 
 .student-profile {
@@ -395,13 +391,6 @@ h1 {
 
 .notesForm {
   display: flex;
-  /* border: #56BBF1 solid 3px;
-  height: 300px;
-  width: 400px;
-  text-align: center;
-  margin: auto;
-  margin-top: 30px;
-  box-shadow: 5px 10px; */
 }
 
 .form-style-3 {
@@ -489,7 +478,6 @@ select {
 }
 
 .daily-behavior-card {
-  /* margin-bottom: 20px; */
   border: #56BBF1 solid;
   width: 15%;
   height: 225px;
@@ -526,7 +514,6 @@ select {
   width: 20%;
   border: #56BBF1 solid 3px;
   height: fit-content;
-  /* width: 400px; */
   text-align: center;
   margin: auto;
   box-shadow: 5px 10px;
@@ -566,13 +553,11 @@ margin: 15px;
   padding: 5px 10px;
 }
 .parent-info{
-  /* border: #56BBF1 solid;   */
   width: 35%;
   margin-bottom: 10px;
 }
 
 .behavior-info{ 
-  /* border: #56BBF1 solid;   */
   width: 35%;
   margin-bottom: 10px;
   
@@ -593,8 +578,3 @@ margin: 15px;
 .submit-words{
   color: #3CCF4E;
 }
-
-
-
-
-
