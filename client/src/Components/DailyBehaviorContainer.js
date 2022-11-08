@@ -17,13 +17,10 @@ function DailyBehaviorContainer({ classToShow, setShowClass, setShowSubmitMessag
 
     function handleFireOffSubmitAllNotes(){
         setFireOffAllNotes(true)
-       
     }
 
-   
 
     
-
     return(
         <div>
             <h2>{classToShow[0].cohort_name}</h2>

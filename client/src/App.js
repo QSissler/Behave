@@ -16,7 +16,6 @@ import { CohortProvider } from "./Context/CohortProvider";
 function App() {
   const [user, setUser] = useState(null);
  
-  
 
   useEffect(() => {
     // auto-login

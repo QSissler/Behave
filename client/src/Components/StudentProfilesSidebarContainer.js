@@ -31,7 +31,6 @@ function StudentProfilesSideBarContainer(){
     return(
         <div className="profiles">
             <div className="sidebar">
-            {/* <h2>Choose a Class</h2> */}
             <form>
             <select onChange={(e) => handleClassProfilePageChange(e)} className="sidebar-select">
                 <option>Choose a Class</option>

@@ -7,7 +7,6 @@ import { BsArrowLeft } from "react-icons/bs";
 
 
 
-
 function StudentProfileCard({chosenStudent, showUpdateStudentForm, setShowUpdateStudentForm}){
     const [student, setStudent] = useState([])
     const [notes, setNotes] = useState([])
@@ -163,7 +162,6 @@ function StudentProfileCard({chosenStudent, showUpdateStudentForm, setShowUpdate
             <button onClick={handleShowAddNoteForm}className="add-note-button">{showNoteForm ? "Hide Note" :" Add Note"}</button>
             {showNoteForm ? <form onSubmit={(e) => handleSubmitNewNote(e)} className="form-style-3">
             <textarea className="note-comment-input" type="textarea" rows="2" value={note} onChange={(e) => setNote(e.target.value)} placeholder="Comment"></textarea>
-            {/* <div className="contact-and-level"> */}
             <select onChange={(e) => setBehaviorLevel(e.target.value)} value={behaviorLevel} className="daily-behavior-select">
                     <option>Green</option>
                     <option>Yellow</option>
@@ -178,7 +176,6 @@ function StudentProfileCard({chosenStudent, showUpdateStudentForm, setShowUpdate
                 setParentContact(!parentContact)
                 setIsChecked(!isChecked)}}>
                 </input></label>
-                {/* </div> */}
                 <button type="submit" className="submit-new-note-button">Submit Note</button>
             </form> : null}
             </div>
