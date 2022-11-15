@@ -1,24 +1,57 @@
-# README
+# Behave
+An application designed for teachers to document and organize student behavior and parent contact.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## User Stories
 
-Things you may want to cover:
+The User can:
 
-* Ruby version
+-Create an account
+-Sign into an existing account
+-Add, update, and remove classes
+-Add and remove students in each class
+-Add daily behavior notes for entire classes
+-Add notes for specific students as needed
+-Update and delete specific notes for a student
+-Update student profile information
+-Update account information
+-View student profiles, which include all behavior notes and parent contact information
 
-* System dependencies
+## Set Up
 
-* Configuration
+To run this project, first clone or fork repository:
 
-* Database creation
+```
+git clone https://github.com/QSissler/behave
+```
 
-* Database initialization
+Install requirements
 
-* How to run the test suite
+```
+npm install
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Run server 
 
-* Deployment instructions
+```
+rails server
+```
 
-* ...
+Open the app in browser
+
+```
+npm start --prefix client
+```
+
+## Technologies
+
+- Javascript
+- React
+- React Router DOM
+- Ruby on Rails
+- PostgreSQL
+- Active Record
+- Custom CSS
+
+## Demo
+Coming Soon
+
