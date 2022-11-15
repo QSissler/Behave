@@ -5,16 +5,16 @@ An application designed for teachers to document and organize student behavior a
 
 The User can:
 
--Create an account
--Sign into an existing account
--Add, update, and remove classes
--Add and remove students in each class
--Add daily behavior notes for entire classes
--Add notes for specific students as needed
--Update and delete specific notes for a student
--Update student profile information
--Update account information
--View student profiles, which include all behavior notes and parent contact information
+- Create an account
+- Sign into an existing account
+- Add, update, and remove classes
+- Add and remove students in each class
+- Add daily behavior notes for entire classes
+- Add notes for specific students as needed
+- Update and delete specific notes for a student
+- Update student profile information
+- Update account information
+- View student profiles, which include all behavior notes and parent contact information
 
 ## Set Up
 
