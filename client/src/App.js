@@ -32,7 +32,7 @@ function App() {
   
 
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
       <div className="App">
         <NavBar user={user} setUser={setUser}/>
         <Switch>
@@ -72,7 +72,7 @@ function App() {
           </CohortProvider>
         </Switch>
       </div>
-    </BrowserRouter>
+    // </BrowserRouter>
   );
 }
 
